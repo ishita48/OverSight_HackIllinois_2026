@@ -1,0 +1,505 @@
+BackStory UI/UX Design Bible
+The Complete Guide to Crafting a Voice-First Storytelling Experience
+
+Core Design Philosophy
+BackStory is not a SaaS product. It's a digital campfire where founders come to reflect, not pitch. Every pixel should whisper "you're safe here, tell your real story."
+What BackStory IS:
+
+A warm, intimate space for vulnerability
+A friend who listens without judgment
+A mirror that shows your journey beautifully
+Notion's elegance meets Headspace's warmth
+
+What BackStory IS NOT:
+
+Corporate or sterile
+Data-heavy or dashboard-y
+Bright, loud, or demanding
+Another productivity tool
+
+
+Global Design System
+Color Palette
+Primary Background: #FDFCFB (warm off-white, like aged paper)
+Secondary Background: #F7F5F2 (subtle warmth)
+Text Primary: #2C2825 (warm black, never pure black)
+Text Secondary: #6B6560 (warm gray)
+Accent Warm: #E4B08F (muted terracotta)
+Accent Cool: #8B9DC3 (dusty blue, for CTAs)
+Success: #7FB069 (sage green)
+Error: #D4735F (muted coral)
+Typography System
+Headlines: "Playfair Display" or "Crimson Pro" (serif with soul)
+Body: "Inter" or "Source Sans Pro" (clean, readable)
+Accent/Handwritten touches: "Caveat" or "Amatic SC" (for personality moments)
+
+Scale:
+- Hero: 48-56px (rare, only for major moments)
+- H1: 32-36px
+- H2: 24-28px
+- Body: 16-18px (prioritize readability)
+- Small: 14px
+- Micro: 12px (use sparingly)
+Spacing & Layout
+
+Use 8px grid system religiously
+Generous whitespace - let everything breathe
+Max content width: 720px for text, 1200px for app
+Padding: 24px minimum on mobile, 48px on desktop
+Border radius: 12-16px (soft, never sharp)
+Shadows: Subtle, warm - box-shadow: 0 4px 20px rgba(0,0,0,0.06)
+
+Animation Principles
+
+Everything eases: transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1)
+Micro-delays between elements: 50-100ms
+Hover states lift slightly: transform: translateY(-2px)
+Loading states pulse gently, never spin
+Page transitions fade through white, not black
+
+
+Page-by-Page Design Specifications
+1. HOME PAGE (Dashboard)
+URL: /app/home
+Hero Section:
+
+Greeting: Dynamic based on time
+
+Morning: "ready to reflect, [name]?"
+Afternoon: "afternoon thoughts?"
+Evening: "evening reflections"
+Late night: "burning the midnight oil?"
+
+
+
+Main CTA Button:
+
+Text: "start talking" (lowercase, always)
+Style: Large (200px x 60px), dusty blue background
+Hover: Subtle glow effect, slight scale(1.02)
+Micro-copy below: "your story, your pace"
+
+Recent Sessions Section:
+
+Title: "recent chapters"
+Each session card shows:
+
+Relative date: "2 hours ago" not timestamps
+Emotional tone indicator: Subtle color bar (warm/cool)
+First compelling line from the session
+Duration in human terms: "a coffee break" (5-15min), "a deep dive" (15-30min), "an odyssey" (30min+)
+
+
+
+Empty State:
+
+Illustration: Abstract, warm shapes suggesting conversation
+Text: "no stories yet - but every founder starts somewhere"
+Subtext: "when you're ready, we're listening"
+
+2. RECORD PAGE
+URL: /app/record
+Pre-Recording State:
+
+Full screen calm gradient (warm white to cream)
+Center message: "take a breath"
+After 2 seconds, fade to: "whenever you're ready"
+Mic button: 80px circle, subtle pulse animation
+
+Active Recording State:
+
+Background: Responds to voice with subtle color shifts
+Voice visualization: NOT waveforms - use organic flowing shapes
+Think: Aurora borealis or smoke wisps
+Colors shift based on tone/emotion detected
+
+UI Elements During Recording:
+
+Timer: Minimal, top right, format "12:34" in light gray
+Pause button: Appears on hover/movement
+Current prompt/question from BackStory: Fades in gently at bottom
+Encouraging messages between prompts:
+
+"that's powerful"
+"keep going"
+"we're listening"
+"take your time"
+
+
+
+Post-Recording Transition:
+
+Screen gently fades to white
+Message: "processing your story..."
+Then: "finding the threads..."
+Finally: "almost ready..."
+Each message fades in/out over 2 seconds
+
+3. RESULTS PAGE
+URL: /app/results/[session-id]
+Progressive Reveal Structure:
+
+Founder Bio (appears first)
+
+Animated typing effect, 50ms per character
+Serif font, 20px, generous line height
+Soft container with 32px padding
+
+
+Tagline (after 2s delay)
+
+Larger text, 28px, centered
+Quotation marks in accent color
+Subtle emphasis animation
+
+
+Full Narrative (after 4s delay)
+
+Beautiful reading experience
+18px font, 1.8 line height
+Pull quotes highlighted automatically
+Key moments in subtle accent boxes
+
+
+
+Action Bar (sticky bottom):
+
+"share your story" - Opens modal with options
+"keep refining" - Returns to record with context
+"save to vault" - Confirms with gentle toast
+
+Share Modal:
+
+Public link generator
+Preview how it looks
+Privacy toggle: "visible to:" everyone/link only/just me
+Copy: "your story is precious. share wisely."
+
+4. PROJECTS PAGE
+URL: /app/projects
+Header:
+
+Title: "your vault"
+Subtitle: "every chapter of your journey"
+
+Project Cards:
+
+Visual: Abstract generative art based on voice signature
+Title: Project name in serif
+Metadata: "3 sessions • last updated 2 days ago"
+Hover: Subtle lift + shadow deepens
+Click: Smooth page transition with fade
+
+New Project CTA:
+
+Dotted border card with + icon
+Text: "start new chapter"
+Hover: Border solidifies, background shifts
+
+5. PROJECT DETAIL PAGE
+URL: /app/projects/[id]
+Timeline View:
+
+Vertical timeline of all sessions
+Each node shows:
+
+Date
+Key insight (AI-extracted)
+Emotional tone (color)
+Duration
+
+
+Connecting line shows evolution
+
+Session Hover:
+
+Expands to show preview
+"revisit this moment" link
+Smooth height animation
+
+6. PROFILE PAGE
+URL: /app/profile
+Header:
+
+"the legend of [name]"
+Subtext: "founder since [date]"
+
+Stats (but make them human):
+
+Total reflection time: "14 hours of deep thinking"
+Number of sessions: "23 conversations with yourself"
+Most productive time: "you're a night owl"
+Emotional journey: Simple line graph of mood over time
+
+Voice Signature Section:
+
+Visual representation of their unique voice pattern
+Download as image option
+"this is what your determination sounds like"
+
+7. SETTINGS PAGE
+URL: /app/settings
+Sections (with personality):
+Voice Preferences:
+
+Title: "how should we listen?"
+Options: Question frequency, conversation style
+Each option has helpful micro-copy
+
+Privacy:
+
+Title: "your stories, your rules"
+Clear toggles with explanations
+No dark patterns
+
+Notifications:
+
+Title: "gentle reminders"
+Options framed positively: "celebrate milestones" not "send emails"
+
+8. PUBLIC PROFILE
+URL: app/u/[username]
+Design:
+
+Minimal, focused on the story
+Large serif headline with founder name
+Their best narratives/taglines
+Soft gradient background
+"crafted with backstory" subtle link
+
+
+Modal Designs
+Session Start Modal
+Triggered by: "start talking" button
+New User:
+
+Message: "virgin voyage?"
+Subtext: "let's craft your first founder story"
+Single button: "begin"
+
+Returning User:
+
+Message: "welcome back"
+Options presented as cards:
+
+"fresh chapter" (new session)
+"continue [project name]" (shows last timestamp)
+"pick a different story" (project selector)
+
+
+
+Onboarding Flow
+Three slides, swipeable:
+
+Listen:
+
+Visual: Abstract ear shape in gradient
+Text: "we listen to your real story"
+Subtext: "not your pitch deck"
+
+
+Understand:
+
+Visual: Connecting dots animation
+Text: "we find the threads"
+Subtext: "every pause, every emotion matters"
+
+
+Craft:
+
+Visual: Text transforming to stars
+Text: "we craft your narrative"
+Subtext: "authentic, powerful, yours"
+
+
+
+
+Component Specifications
+Buttons
+Primary CTA:
+cssbackground: dusty-blue;
+padding: 16px 32px;
+border-radius: 12px;
+font-weight: 500;
+letter-spacing: 0.02em;
+text-transform: lowercase;
+transition: all 0.3s ease;
+hover: transform: translateY(-2px);
+hover: box-shadow: 0 8px 24px rgba(139, 157, 195, 0.2);
+Input Fields
+cssbackground: transparent;
+border: 2px solid warm-gray-light;
+border-radius: 8px;
+padding: 12px 16px;
+focus: border-color: dusty-blue;
+focus: no outline, just border color change;
+Cards
+cssbackground: white;
+border: 1px solid rgba(0,0,0,0.06);
+border-radius: 16px;
+padding: 24px;
+transition: all 0.3s ease;
+hover: transform: translateY(-4px);
+hover: box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+
+Micro-Interactions & Details
+Loading States
+
+Never use spinners
+Use skeleton screens with gentle pulse
+Loading messages that evolve: "gathering thoughts..." → "almost there..."
+
+Toasts/Notifications
+
+Slide in from top-right
+Soft shadows
+Auto-dismiss after 4s
+Icons: Phosphor or Lucide (never FA)
+
+Empty States
+
+Always include warm illustration
+Message + helpful action
+Never say "No data" - say "nothing here yet"
+
+Error States
+
+Never aggressive red
+Use warm coral
+Helpful, human messages: "hmm, something's off. let's try again?"
+Always provide action
+
+Hover States
+
+Every interactive element responds
+Subtle color shifts
+Micro-movements (scale, translate)
+Cursor changes appropriately
+
+
+Voice & Copy Guidelines
+Always lowercase:
+
+Button text
+Short actions
+Casual messages
+
+Sentence case:
+
+Headers
+Longer explanations
+Formal sections
+
+Never use:
+
+Corporate speak ("leverage", "utilize")
+Tech jargon (unless explaining features)
+Exclamation points (except rare celebration moments)
+ALL CAPS (except legal requirements)
+
+Personality examples:
+
+Instead of "Profile": "your story"
+Instead of "Settings": "preferences"
+Instead of "Error 404": "we got lost"
+Instead of "Loading...": "gathering thoughts..."
+Instead of "Submit": "share" or "done"
+Instead of "Delete": "forget this"
+
+
+Responsive Considerations
+Mobile (< 768px):
+
+Single column layouts
+Bottom sheet modals
+Larger touch targets (min 48px)
+Simplified navigation
+Voice button more prominent
+
+Tablet (768px - 1024px):
+
+Two column where sensible
+Side panels for navigation
+Adjusted typography scale
+
+Desktop (> 1024px):
+
+Full experience
+Keyboard shortcuts active
+Hover states enabled
+Multi-panel layouts
+
+
+Performance & Polish
+Image Handling:
+
+Lazy load everything
+Blur-up placeholders
+WebP with fallbacks
+Max image width: 1200px
+
+Animations:
+
+Respect prefers-reduced-motion
+GPU-accelerated transforms only
+No animation longer than 400ms
+Stagger multi-element animations
+
+Accessibility:
+
+ARIA labels on all interactions
+Focus states clear but beautiful
+Keyboard navigation perfect
+Screen reader friendly copy
+
+
+The "Wow" Factors
+
+State Persistence:
+
+Remember where users left off
+Smooth recovery from disconnects
+Draft states that feel magical
+
+
+Thoughtful Details:
+
+Time-aware greetings
+Weather-aware color temps (subtle)
+Celebration moments for milestones
+Surprise & delight copy variations
+
+
+Polish:
+
+No jarring transitions
+Everything feels "buttery"
+Consistent, predictable behaviors
+Zero broken states
+
+
+
+
+What NOT to Do
+❌ Bright, harsh colors
+❌ Corporate blue/gray schemes
+❌ Robotic or formal language
+❌ Dense information layouts
+❌ Aggressive CTAs or growth hacking
+❌ Generic SaaS patterns
+❌ Stock illustrations
+❌ Complicated onboarding
+❌ Feature overload
+❌ Disrespecting user emotion
+
+Final Thoughts
+BackStory should feel like:
+
+A late-night conversation with your smartest friend
+A leather journal that writes itself
+A mirror that shows your best self
+A campfire that never goes out
+
+Every design decision should ask: "Does this make the founder feel heard, understood, and powerful?"
+If you can look at any screen and think "I want to tell my story here" - you've succeeded.
+Remember: We're not building software. We're building a sanctuary for founder souls.
