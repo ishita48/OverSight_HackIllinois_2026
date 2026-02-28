@@ -572,27 +572,29 @@ const caseStudies = [
                                 isComplete: false,
                                 fileName: file.name,
                                 flags: [],
-                                summary: '',
+                                summary: "",
                               });
 
                               try {
-                                const fakeBillText = "MRI Scan $4200 Blood Test $900 Consultation $500";
-                                const analysis = await analyzeBill(fakeBillText);
+                                const analysis = await analyzeBill(file);
+
                                 setUploadState({
                                   isUploading: false,
                                   isComplete: true,
                                   fileName: file.name,
-                                  flags: analysis.flags,
-                                  summary: analysis.summary,
+                                  flags: analysis?.flags || [],
+                                  summary: analysis?.summary || "",
                                 });
+
                               } catch (err) {
                                 console.error("Analysis failed:", err);
+
                                 setUploadState({
                                   isUploading: false,
                                   isComplete: false,
-                                  fileName: '',
+                                  fileName: "",
                                   flags: [],
-                                  summary: '',
+                                  summary: "",
                                 });
                               }
                             }

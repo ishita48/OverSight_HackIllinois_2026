@@ -1,16 +1,18 @@
-export async function analyzeBill(billText) {
+export async function analyzeBill(file) {
+  const formData = new FormData();
+  formData.append("file", file);
+
   const res = await fetch(
-    process.env.NEXT_PUBLIC_MODAL_ANALYZE_URL,
+    process.env.NEXT_PUBLIC_MODAL_PDF_URL,
     {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        bill_text: billText,
-      }),
+      body: formData,
     }
   );
+
+  if (!res.ok) {
+    throw new Error("Analysis failed");
+  }
 
   return await res.json();
 }
