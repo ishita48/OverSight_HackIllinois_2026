@@ -32,6 +32,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import VapiWidget from "@/components/vapi";
+import { analyzeBill } from "@/lib/analyzeBill";
 
 export default function LandingPage() {
   const router = useRouter();
@@ -41,10 +42,13 @@ export default function LandingPage() {
   const [waveAnimation, setWaveAnimation] = useState(Array(40).fill(0));
   const [playingText, setPlayingText] = useState(0);
 
+  // ✅ CHANGE 1: Added flags and summary to initial state
   const [uploadState, setUploadState] = useState({
     isUploading: false,
     isComplete: false,
     fileName: '',
+    flags: [],
+    summary: '',
   });
 
   const [currentConversationStep, setCurrentConversationStep] = useState(0);
@@ -53,7 +57,7 @@ export default function LandingPage() {
 
   // Voice demo texts that cycle through
   const voiceDemoTexts = [
-    "I didn’t even understand what half of these charges meant.",
+    "I didn't even understand what half of these charges meant.",
     "I assumed insurance handled it — until I saw the balance.",
     "I almost paid it without questioning anything.",
     "It felt easier to accept the bill than to challenge it.",
@@ -63,9 +67,9 @@ export default function LandingPage() {
   // Rotating founder truths
   const founderTruths = [
     "I was billed $1,320 above the benchmark — and I almost paid it without questioning anything.",
-    "I didn’t realize insurance should have covered that entire charge.",
+    "I didn't realize insurance should have covered that entire charge.",
     "The procedure was overcoded. I saved $1,870 after reviewing the breakdown.",
-    "They listed the visit as out-of-network — it wasn’t.",
+    "They listed the visit as out-of-network — it wasn't.",
     "I almost paid $980 more than I needed to. Seeing the analysis changed everything.",
   ];
 
@@ -122,20 +126,18 @@ const conversationSteps = [
   },
 ];
 
-// Add this useEffect to animate through the conversation
 useEffect(() => {
   if (!isPlaying) return;
 
   if (currentConversationStep < conversationSteps.length - 1) {
     const timer = setTimeout(() => {
       setCurrentConversationStep((prev) => prev + 1);
-    }, 2500); // Each message appears after 2.5 seconds
+    }, 2500);
 
     return () => clearTimeout(timer);
   }
 }, [isPlaying, currentConversationStep, conversationSteps.length]);
 
-// Modify the existing isPlaying useEffect or add a reset when playing starts
 useEffect(() => {
   if (isPlaying) {
     setCurrentConversationStep(0);
@@ -282,24 +284,6 @@ const caseStudies = [
 
     return () => clearInterval(interval);
   }, [isPlaying, voiceDemoTexts.length]);
-
-    useEffect(() => {
-    if (!isPlaying) return;
-
-    if (currentConversationStep < conversationSteps.length - 1) {
-      const timer = setTimeout(() => {
-        setCurrentConversationStep((prev) => prev + 1);
-      }, 2500);
-
-      return () => clearTimeout(timer);
-    }
-  }, [isPlaying, currentConversationStep, conversationSteps.length]);
-
-  useEffect(() => {
-    if (isPlaying) {
-      setCurrentConversationStep(0);
-    }
-  }, [isPlaying]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -553,7 +537,7 @@ const caseStudies = [
             </p>
           </motion.div>
           
-                    {/* Interactive PDF Upload Demo */}
+          {/* Interactive PDF Upload Demo */}
           <motion.div
             className="max-w-4xl mx-auto mb-16"
             initial={{ opacity: 0, y: 30 }}
@@ -575,27 +559,42 @@ const caseStudies = [
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                       >
+                        {/* ✅ CHANGE 2: Real file upload — calls analyzeBill instead of setTimeout */}
                         <input
                           type="file"
                           accept=".pdf"
                           className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                          onChange={(e) => {
+                          onChange={async (e) => {
                             if (e.target.files?.[0]) {
                               const file = e.target.files[0];
-                              setUploadState({ 
-                                isUploading: true, 
+                              setUploadState({
+                                isUploading: true,
                                 isComplete: false,
-                                fileName: file.name 
+                                fileName: file.name,
+                                flags: [],
+                                summary: '',
                               });
-                              
-                              // Simulate processing time
-                              setTimeout(() => {
-                                setUploadState({ 
-                                  isUploading: false, 
+
+                              try {
+                                const fakeBillText = "MRI Scan $4200 Blood Test $900 Consultation $500";
+                                const analysis = await analyzeBill(fakeBillText);
+                                setUploadState({
+                                  isUploading: false,
                                   isComplete: true,
-                                  fileName: file.name 
+                                  fileName: file.name,
+                                  flags: analysis.flags,
+                                  summary: analysis.summary,
                                 });
-                              }, 3000);
+                              } catch (err) {
+                                console.error("Analysis failed:", err);
+                                setUploadState({
+                                  isUploading: false,
+                                  isComplete: false,
+                                  fileName: '',
+                                  flags: [],
+                                  summary: '',
+                                });
+                              }
                             }
                           }}
                         />
@@ -682,7 +681,7 @@ const caseStudies = [
                       </motion.div>
                     )}
 
-                    {/* Success State */}
+                    {/* ✅ CHANGE 3: Success state now shows real flags and summary from Modal */}
                     {uploadState.isComplete && (
                       <motion.div
                         className="flex flex-col items-center justify-center space-y-6 w-full"
@@ -711,17 +710,22 @@ const caseStudies = [
                             {uploadState.fileName}
                           </p>
                           
+                          {/* Real flags from Modal */}
                           <div className="pt-4 space-y-2">
-                            <div className="flex items-center justify-center space-x-2 text-sm">
-                              <div className="px-4 py-2 rounded-lg bg-[#D4735F]/10 text-[#D4735F] font-medium">
-                                3 potential overcharges detected
+                            {uploadState.flags?.map((flag, i) => (
+                              <div key={i} className="flex items-center justify-center space-x-2 text-sm">
+                                <div className="px-4 py-2 rounded-lg bg-[#D4735F]/10 text-[#D4735F] font-medium">
+                                  ⚠ {flag}
+                                </div>
                               </div>
-                            </div>
-                            <div className="flex items-center justify-center space-x-2 text-sm">
-                              <div className="px-4 py-2 rounded-lg bg-[#8B9DC3]/10 text-[#8B9DC3] font-medium">
-                                Estimated savings: $847
+                            ))}
+                            {uploadState.summary && (
+                              <div className="flex items-center justify-center space-x-2 text-sm">
+                                <div className="px-4 py-2 rounded-lg bg-[#8B9DC3]/10 text-[#8B9DC3] font-medium">
+                                  {uploadState.summary}
+                                </div>
                               </div>
-                            </div>
+                            )}
                           </div>
 
                           <div className="pt-4">
@@ -730,7 +734,9 @@ const caseStudies = [
                                 setUploadState({ 
                                   isUploading: false, 
                                   isComplete: false,
-                                  fileName: '' 
+                                  fileName: '',
+                                  flags: [],
+                                  summary: '',
                                 });
                               }}
                               className="bg-gradient-to-r from-[#D4735F] to-[#B85A47] hover:from-[#C66A56] hover:to-[#A5533F] text-white"
@@ -747,40 +753,77 @@ const caseStudies = [
                   {!uploadState.isUploading && !uploadState.isComplete && (
                     <div className="flex items-center justify-center space-x-4 pt-4">
                       <span className="text-sm text-[#6B6560]">Try a sample:</span>
+
+                      {/* ✅ CHANGE 4: Emergency Room sample button — calls analyzeBill */}
                       <button 
-                        onClick={() => {
-                          setUploadState({ 
-                            isUploading: true, 
+                        onClick={async () => {
+                          setUploadState({
+                            isUploading: true,
                             isComplete: false,
-                            fileName: 'emergency-room-bill.pdf' 
+                            fileName: 'emergency-room-bill.pdf',
+                            flags: [],
+                            summary: '',
                           });
-                          setTimeout(() => {
-                            setUploadState({ 
-                              isUploading: false, 
+                          try {
+                            const analysis = await analyzeBill(
+                              "Emergency Room visit Level 5 $4820 EKG $450 Chest X-ray $800 Blood panel $900 Facility fee $450 Facility fee $450"
+                            );
+                            setUploadState({
+                              isUploading: false,
                               isComplete: true,
-                              fileName: 'emergency-room-bill.pdf' 
+                              fileName: 'emergency-room-bill.pdf',
+                              flags: analysis.flags,
+                              summary: analysis.summary,
                             });
-                          }, 3000);
+                          } catch (err) {
+                            console.error("Analysis failed:", err);
+                            setUploadState({
+                              isUploading: false,
+                              isComplete: false,
+                              fileName: '',
+                              flags: [],
+                              summary: '',
+                            });
+                          }
                         }}
                         className="text-sm text-[#D4735F] hover:text-[#B85A47] underline underline-offset-2 transition-colors"
                       >
                         Emergency Room Bill
                       </button>
+
                       <span className="text-[#E4B08F]">•</span>
+
+                      {/* ✅ CHANGE 5: Surgery Invoice sample button — calls analyzeBill */}
                       <button 
-                        onClick={() => {
-                          setUploadState({ 
-                            isUploading: true, 
+                        onClick={async () => {
+                          setUploadState({
+                            isUploading: true,
                             isComplete: false,
-                            fileName: 'surgery-invoice.pdf' 
+                            fileName: 'surgery-invoice.pdf',
+                            flags: [],
+                            summary: '',
                           });
-                          setTimeout(() => {
-                            setUploadState({ 
-                              isUploading: false, 
+                          try {
+                            const analysis = await analyzeBill(
+                              "Outpatient surgery anesthesia 4.5 hours $2025 Operating room 4.5 hours $3600 Surgical assistant $800 Recovery room $1200 Surgical supplies $750"
+                            );
+                            setUploadState({
+                              isUploading: false,
                               isComplete: true,
-                              fileName: 'surgery-invoice.pdf' 
+                              fileName: 'surgery-invoice.pdf',
+                              flags: analysis.flags,
+                              summary: analysis.summary,
                             });
-                          }, 3000);
+                          } catch (err) {
+                            console.error("Analysis failed:", err);
+                            setUploadState({
+                              isUploading: false,
+                              isComplete: false,
+                              fileName: '',
+                              flags: [],
+                              summary: '',
+                            });
+                          }
                         }}
                         className="text-sm text-[#D4735F] hover:text-[#B85A47] underline underline-offset-2 transition-colors"
                       >
@@ -842,7 +885,7 @@ const caseStudies = [
           </motion.div>
 
 
-                              <div className="grid md:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-4 gap-6">
             {[
               {
                 step: "01",
@@ -1516,9 +1559,7 @@ const caseStudies = [
         </div>
       </motion.section>
 
-
-
-            {/* Footer */}
+      {/* Footer */}
       <footer className="border-t border-[#F7F5F2] py-16 px-6 relative z-10 bg-gradient-to-b from-[#FDFCFB] to-[#F7F5F2]">
         <div className="max-w-7xl mx-auto">
           {/* Main Footer Content */}
