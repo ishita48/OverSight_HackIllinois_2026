@@ -48,7 +48,7 @@ export default function SignUpPage() {
                 <Flame className="w-5 h-5 text-white" />
               </div>
               <span className="text-xl font-bold font-logo text-[#2C2825]">
-                BackStory
+                OverSight
               </span>
             </div>
           </Link>

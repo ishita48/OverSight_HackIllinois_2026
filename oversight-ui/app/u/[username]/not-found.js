@@ -18,7 +18,7 @@ export default function NotFound() {
         <Link href="/">
           <Button className="bg-[#D4735F] hover:bg-[#B85A47] text-white rounded-xl px-8 py-3">
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to BackStory
+            Back to OverSight
           </Button>
         </Link>
       </div>

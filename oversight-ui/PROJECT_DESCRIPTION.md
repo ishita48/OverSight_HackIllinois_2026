@@ -1,12 +1,12 @@
-# BackStory - Project Documentation
+# OverSight - Project Documentation
 
 ## 🎯 Project Overview
 
-**BackStory** is a voice-first founder storytelling platform designed to help startup entrepreneurs discover, articulate, and refine their authentic narratives through AI-powered conversations. Unlike traditional text-based journaling or pitch deck tools, BackStory leverages the power of voice to unlock genuine emotion, spontaneous insights, and the raw authenticity that makes compelling founder stories.
+**OverSight** is a voice-first founder storytelling platform designed to help startup entrepreneurs discover, articulate, and refine their authentic narratives through AI-powered conversations. Unlike traditional text-based journaling or pitch deck tools, OverSight leverages the power of voice to unlock genuine emotion, spontaneous insights, and the raw authenticity that makes compelling founder stories.
 
 ### Current Status: Production-Grade MVP+
 
-BackStory is currently a **production-grade MVP+** with core functionality fully implemented and live. The platform successfully demonstrates the voice-to-narrative pipeline with real users actively using the system to develop their founder stories.
+OverSight is currently a **production-grade MVP+** with core functionality fully implemented and live. The platform successfully demonstrates the voice-to-narrative pipeline with real users actively using the system to develop their founder stories.
 
 ### Core Mission
 
@@ -200,7 +200,7 @@ After AI processing, users can access:
 - isActive (boolean, account status)
 - hasOnboarded (boolean, setup completion)
 - interviewCredits (integer, usage limits - default: 3)
-- bio (text, optional backstory)
+- bio (text, optional OverSight)
 - createdAt (timestamp)
 ```
 
@@ -559,7 +559,7 @@ GOOGLE_GEMINI_API_KEY=
 - **Production-grade error handling** and connection management
 - **Modern development stack** with TypeScript, Tailwind, and component libraries
 
-BackStory represents a **successfully implemented MVP+** that proves the voice-to-narrative concept while maintaining a clear technical roadmap for scaling to a full v1.0 product.
+OverSight represents a **successfully implemented MVP+** that proves the voice-to-narrative concept while maintaining a clear technical roadmap for scaling to a full v1.0 product.
 
 - **Human connection** enhanced by AI insights
 
@@ -572,6 +572,6 @@ BackStory represents a **successfully implemented MVP+** that proves the voice-t
 
 ---
 
-**BackStory** represents a fundamental shift in how founders approach narrative development - from a laborious writing exercise to an engaging conversation that naturally unlocks the authentic stories that make businesses compelling and memorable.
+**OverSight** represents a fundamental shift in how founders approach narrative development - from a laborious writing exercise to an engaging conversation that naturally unlocks the authentic stories that make businesses compelling and memorable.
 
 The platform's unique combination of voice-first interaction, AI-powered analysis, and iterative refinement creates an experience that is both emotionally rewarding and practically valuable for founders at any stage of their journey.

@@ -1,31 +1,31 @@
 export const metadata = {
   title: {
-    template: "%s | BackStory",
-    default: "BackStory - Your Founder Story Platform",
+    template: "%s | OverSight",
+    default: "OverSight - Your Founder Story Platform",
   },
   description:
-    "Join BackStory to craft your authentic founder narrative through voice. Trusted by 500+ founders worldwide.",
+    "Join OverSight to craft your authentic founder narrative through voice. Trusted by 500+ founders worldwide.",
   keywords:
     "founder story, startup narrative, authentication, voice journaling, founder platform",
   openGraph: {
-    title: "BackStory - Your Founder Story Platform",
+    title: "OverSight - Your Founder Story Platform",
     description:
-      "Join BackStory to craft your authentic founder narrative through voice.",
+      "Join OverSight to craft your authentic founder narrative through voice.",
     type: "website",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "BackStory - Your story deserves to be told",
+        alt: "OverSight - Your story deserves to be told",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "BackStory - Your Founder Story Platform",
+    title: "OverSight - Your Founder Story Platform",
     description:
-      "Join BackStory to craft your authentic founder narrative through voice.",
+      "Join OverSight to craft your authentic founder narrative through voice.",
     images: ["/og-image.png"],
   },
 };

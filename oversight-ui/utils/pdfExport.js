@@ -211,7 +211,7 @@ export const exportProfileToPDF = async (profileData, user) => {
 
         <!-- Footer -->
         <div style="text-align: center; padding: 40px 0; border-top: 1px solid #F7F5F2; color: #6B6560; font-size: 14px;">
-          <div style="margin-bottom: 10px;">Generated from BackStory</div>
+          <div style="margin-bottom: 10px;">Generated from OverSight</div>
           <div>Your founder journey, beautifully captured • ${new Date().toLocaleDateString()}</div>
         </div>
       </div>
@@ -277,7 +277,7 @@ export const exportProfileToPDF = async (profileData, user) => {
     // Download the PDF
     const fileName = `${user?.firstName || "Founder"}_${
       user?.lastName || "Profile"
-    }_BackStory.pdf`;
+    }_OverSight.pdf`;
     pdf.save(fileName);
 
     return true;

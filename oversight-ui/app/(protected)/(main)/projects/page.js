@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import ProjectsClient from "./ProjectsClient";
 
 export const metadata = {
-  title: "Projects - BackStory",
+  title: "Projects - OverSight",
   description: "Manage your storytelling projects and narrative arcs",
 };
 

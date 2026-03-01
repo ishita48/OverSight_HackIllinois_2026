@@ -52,7 +52,7 @@ export default function MobileRedirect() {
         <div className="text-center max-w-md">
           <div className="mb-6">
             <h1 className="font-logo text-4xl font-bold text-[#D4735F] mb-2">
-              BackStory
+              OverSight
             </h1>
             <div className="w-20 h-1 bg-[#D4735F] mx-auto rounded-full"></div>
           </div>
@@ -62,7 +62,7 @@ export default function MobileRedirect() {
           </h2>
 
           <p className="text-neutral-600 mb-6 leading-relaxed">
-            BackStory is currently optimized for desktop and web browsers to
+            OverSight is currently optimized for desktop and web browsers to
             provide the best storytelling experience. Please visit us on your
             computer.
           </p>

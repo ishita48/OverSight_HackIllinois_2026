@@ -186,7 +186,7 @@ export default function ProjectPublicClient({ project }) {
                 share story
               </Button>
               <Button
-                onClick={() => window.open("https://backstory.com", "_blank")}
+                onClick={() => window.open("https://OverSight.com", "_blank")}
                 className="bg-gradient-to-r from-[#D4735F] to-[#B85A47] text-white rounded-xl 
                          hover:from-[#B85A47] hover:to-[#A04A37] transition-all duration-300 
                          shadow-lg hover:shadow-xl flex-1 sm:flex-initial"
@@ -486,7 +486,7 @@ export default function ProjectPublicClient({ project }) {
                 </p>
 
                 <Button
-                  onClick={() => window.open("https://backstory.com", "_blank")}
+                  onClick={() => window.open("https://OverSight.com", "_blank")}
                   className="bg-gradient-to-r from-[#D4735F] to-[#B85A47] text-white rounded-xl 
                            hover:from-[#B85A47] hover:to-[#A04A37] transition-all duration-300 
                            shadow-lg hover:shadow-xl"
@@ -509,12 +509,12 @@ export default function ProjectPublicClient({ project }) {
           <p className="text-[#6B6560] text-sm">
             Powered by{" "}
             <a
-              href="https://backstory.com"
+              href="https://OverSight.com"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#D4735F] hover:text-[#B85A47] transition-colors font-medium"
             >
-              BackStory
+              OverSight
             </a>{" "}
             — Where authentic founder narratives come to life
           </p>

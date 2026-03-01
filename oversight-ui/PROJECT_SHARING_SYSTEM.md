@@ -2,7 +2,7 @@
 
 ## Overview
 
-Successfully transformed BackStory from session-level sharing to comprehensive project-level sharing, creating a more cohesive and powerful storytelling platform.
+Successfully transformed OverSight from session-level sharing to comprehensive project-level sharing, creating a more cohesive and powerful storytelling platform.
 
 ## ✅ Implementation Summary
 

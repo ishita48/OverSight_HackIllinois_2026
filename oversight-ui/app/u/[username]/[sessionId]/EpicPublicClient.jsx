@@ -80,7 +80,7 @@ export default function EpicPublicClient({ narrative }) {
       case "twitter":
         shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
           `"${text}" - ${title}`
-        )}&url=${encodeURIComponent(url)}&hashtags=BackStory,FounderStory`;
+        )}&url=${encodeURIComponent(url)}&hashtags=OverSight,FounderStory`;
         break;
       case "linkedin":
         shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
@@ -545,7 +545,7 @@ export default function EpicPublicClient({ narrative }) {
             <div className="flex items-center mb-4 md:mb-0">
               <Mic className="w-4 h-4 mr-2" />
               <span>
-                Powered by BackStory - Voice-first founder storytelling
+                Powered by OverSight - Voice-first founder storytelling
               </span>
             </div>
             <div className="flex items-center gap-4">

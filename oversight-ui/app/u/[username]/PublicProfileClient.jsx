@@ -84,7 +84,7 @@ export default function PublicProfileClient({ username, userId, userProfile }) {
   const shareProfile = async () => {
     const shareText = `Check out ${
       userProfile.name || username
-    }'s founder journey on BackStory: "${profileData.headlineTruth}"`;
+    }'s founder journey on OverSight: "${profileData.headlineTruth}"`;
     const shareUrl = window.location.href;
 
     if (navigator.share) {
@@ -140,7 +140,7 @@ export default function PublicProfileClient({ username, userId, userProfile }) {
               className="border-[#D4735F] text-[#D4735F] hover:bg-[#D4735F]/5"
             >
               <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to BackStory
+              Back to OverSight
             </Button>
           </Link>
         </div>
@@ -186,7 +186,7 @@ export default function PublicProfileClient({ username, userId, userProfile }) {
             className="bg-white/80 backdrop-blur-sm border-[#D4735F]/20 text-[#6B6560] hover:bg-[#D4735F]/5 hover:text-[#D4735F] rounded-full"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to BackStory
+            Back to OverSight
           </Button>
         </Link>
       </div>
@@ -561,7 +561,7 @@ export default function PublicProfileClient({ username, userId, userProfile }) {
                 Inspired by this journey?
               </h3>
               <p className="text-[#6B6560] mb-8 text-lg leading-relaxed">
-                Start capturing your own founder story with BackStory
+                Start capturing your own founder story with OverSight
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <Link href="/">
@@ -600,7 +600,7 @@ export default function PublicProfileClient({ username, userId, userProfile }) {
             <div className="w-8 h-8 bg-gradient-to-br from-[#D4735F] to-[#8B9DC3] rounded-lg flex items-center justify-center mr-3">
               <Sparkles className="w-4 h-4 text-white" />
             </div>
-            <span className="text-xl font-logo text-[#2C2825]">BackStory</span>
+            <span className="text-xl font-logo text-[#2C2825]">OverSight</span>
           </div>
           <p className="text-[#6B6560] text-sm mb-2">
             Where founder journeys come to life

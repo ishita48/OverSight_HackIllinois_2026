@@ -24,7 +24,7 @@ export const userProfiles = pgTable("user_profiles", {
   isActive: boolean("is_active").default(true),
   hasOnboarded: boolean("has_onboarded").default(false),
   interviewCredits: integer("interview_credits").default(3),
-  bio: text("bio"), // optional backstory bio
+  bio: text("bio"), // optional OverSight bio
   createdAt: timestamp("created_at").defaultNow(),
 });
 

@@ -190,7 +190,7 @@ const RecordSession = () => {
         setCurrentQuestion(firstMessage);
 
         const assistantOptions = {
-          name: "BackStory Coach",
+          name: "OverSight Coach",
           firstMessage,
           transcriber: {
             provider: "deepgram",
@@ -350,7 +350,7 @@ const RecordSession = () => {
   useEffect(() => {
     const handleStart = () => {
       setConnectionState(CONNECTION_STATES.CONNECTED);
-      toast.success("BackStory session started");
+      toast.success("OverSight session started");
     };
 
     const handleSpeechStart = () => {
@@ -645,7 +645,7 @@ const RecordSession = () => {
           className="space-y-1"
         >
           <h1 className="text-2xl font-serif font-light text-[#2C2825] tracking-tight">
-            🔥 backstory session
+            🔥 OverSight session
           </h1>
           <p className="text-[#6B6560] text-sm font-light">
             {projectContext

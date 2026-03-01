@@ -140,7 +140,7 @@ export async function generateMetadata({ params }) {
 
     if (!projectData || projectData.length === 0) {
       return {
-        title: "Project Not Found - BackStory",
+        title: "Project Not Found - OverSight",
         description: "The project you're looking for doesn't exist.",
       };
     }
@@ -148,7 +148,7 @@ export async function generateMetadata({ params }) {
     const project = projectData[0];
 
     return {
-      title: `${project.name} - Founder Story | BackStory`,
+      title: `${project.name} - Founder Story | OverSight`,
       description: project.description || `Discover the founder story behind ${project.name}`,
       openGraph: {
         title: `${project.name} - Founder Story`,
@@ -163,7 +163,7 @@ export async function generateMetadata({ params }) {
     };
   } catch (error) {
     return {
-      title: "BackStory - Founder Narratives",
+      title: "OverSight - Founder Narratives",
       description: "Discover authentic founder stories and startup journeys.",
     };
   }

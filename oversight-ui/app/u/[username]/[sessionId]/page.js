@@ -25,7 +25,7 @@ export async function generateMetadata({ params }) {
 
     if (!narrativeData || narrativeData.length === 0) {
       return {
-        title: "Founder Story Not Found - BackStory",
+        title: "Founder Story Not Found - OverSight",
         description: "This founder story could not be found.",
       };
     }
@@ -50,7 +50,7 @@ export async function generateMetadata({ params }) {
     const quote = parsedFeedback.keyQuote?.quote;
 
     return {
-      title: `${title} - BackStory`,
+      title: `${title} - OverSight`,
       description:
         description.slice(0, 160) + (description.length > 160 ? "..." : ""),
       openGraph: {
@@ -59,7 +59,7 @@ export async function generateMetadata({ params }) {
           description.slice(0, 160) + (description.length > 160 ? "..." : ""),
         type: "article",
         url: `${process.env.NEXT_PUBLIC_APP_URL}/u/${username}/${sessionId}`,
-        siteName: "BackStory",
+        siteName: "OverSight",
         images: [
           {
             url: `${process.env.NEXT_PUBLIC_APP_URL}/api/og/${sessionId}`,
@@ -80,7 +80,7 @@ export async function generateMetadata({ params }) {
   } catch (error) {
     console.error("Error generating metadata:", error);
     return {
-      title: "Epic Founder Story - BackStory",
+      title: "Epic Founder Story - OverSight",
       description:
         "Discover authentic founder stories and breakthrough moments.",
     };

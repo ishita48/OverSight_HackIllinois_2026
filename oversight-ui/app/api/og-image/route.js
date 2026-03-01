@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
-  const name = searchParams.get("name") || "BackStory User";
+  const name = searchParams.get("name") || "OverSight User";
 
   // Simple SVG-based OG image
   const svg = `
@@ -33,9 +33,9 @@ export async function GET(request) {
       <!-- Top accent bar -->
       <rect width="1200" height="8" fill="url(#accent)"/>
       
-      <!-- BackStory logo area -->
+      <!-- OverSight logo area -->
       <rect x="80" y="80" width="60" height="60" rx="15" fill="url(#accent)"/>
-      <text x="160" y="125" font-family="Georgia, serif" font-size="28" font-weight="300" fill="#2C2825">BackStory</text>
+      <text x="160" y="125" font-family="Georgia, serif" font-size="28" font-weight="300" fill="#2C2825">OverSight</text>
       
       <!-- Main content -->
       <text x="600" y="280" font-family="Georgia, serif" font-size="48" font-weight="400" fill="#2C2825" text-anchor="middle">${name}</text>
@@ -45,7 +45,7 @@ export async function GET(request) {
       <text x="600" y="420" font-family="system-ui, sans-serif" font-size="20" font-weight="300" fill="#6B6560" text-anchor="middle">Explore their story, insights, and entrepreneurial journey</text>
       
       <!-- Bottom branding -->
-      <text x="600" y="550" font-family="system-ui, sans-serif" font-size="18" font-weight="300" fill="#6B6560" text-anchor="middle">backstory.app</text>
+      <text x="600" y="550" font-family="system-ui, sans-serif" font-size="18" font-weight="300" fill="#6B6560" text-anchor="middle">OverSight.app</text>
     </svg>
   `;
 

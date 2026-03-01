@@ -11,7 +11,7 @@ import HomeClient from "./HomeClient";
 import ErrorBoundary from "@/components/home/ErrorBoundary";
 
 export const metadata = {
-  title: "Home - BackStory",
+  title: "Home - OverSight",
   description:
     "Your voice-first founder storytelling dashboard. Continue your projects and start new story sessions.",
 };

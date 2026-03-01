@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import ProfileClient from "./ProfileClient";
 
 export const metadata = {
-  title: "Your Founder Profile | BackStory",
+  title: "Your Founder Profile | OverSight",
   description:
     "Your complete founder journey - who you are, why you build, how you've grown",
 };

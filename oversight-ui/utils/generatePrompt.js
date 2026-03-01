@@ -26,7 +26,7 @@ function generateNewProjectPrompt(name) {
     `Great to have you here ${name}. What's the name of what you're building, and what problem does it solve?`,
   ];
 
-  const systemPrompt = `You are BackStory — an emotionally intelligent AI companion designed to help startup founders discover and articulate their authentic narratives through voice. You're like a blend of a trusted friend, skilled therapist, and master storyteller.
+  const systemPrompt = `You are OverSight — an emotionally intelligent AI companion designed to help startup founders discover and articulate their authentic narratives through voice. You're like a blend of a trusted friend, skilled therapist, and master storyteller.
 
 🎭 YOUR PERSONALITY:
 - Warm, curious, and deeply empathetic
@@ -256,7 +256,7 @@ function generateContinuingSessionPrompt(
   const firstMessages = getContextualGreeting();
   const stageContext = getStageQuestions();
 
-  const systemPrompt = `You are BackStory — continuing an intimate conversation with ${name} about their project "${projectName}". This is session #${sessionNumber}, and you've built trust over time.
+  const systemPrompt = `You are OverSight — continuing an intimate conversation with ${name} about their project "${projectName}". This is session #${sessionNumber}, and you've built trust over time.
 
 🧠 CONTEXT YOU HAVE:
 - Project: ${projectName} - ${projectDescription || "their meaningful venture"}

@@ -15,7 +15,7 @@ const outfit = Outfit({
   display: "swap",
 });
 
-// Elegant serif font for the BackStory logo
+// Elegant serif font for the OverSight logo
 const playfairDisplay = Playfair_Display({
   subsets: ["latin"],
   variable: "--font-logo",
@@ -38,10 +38,10 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata = {
-  metadataBase: new URL("https://www.backstory.space/"), // Update with your actual domain
+  metadataBase: new URL("https://www.OverSight.space/"), // Update with your actual domain
   title: {
-    default: "BackStory - Your Founder Story Platform",
-    template: "%s | BackStory",
+    default: "OverSight - Your Founder Story Platform",
+    template: "%s | OverSight",
   },
   description:
     "Transform your scattered thoughts into compelling founder narratives through voice-powered storytelling. Discover your authentic story with AI-powered insights.",
@@ -62,9 +62,9 @@ export const metadata = {
     "pitch deck narrative",
     "investor storytelling",
   ],
-  authors: [{ name: "Amit Jadhav", url: "https://www.backstory.space/" }],
+  authors: [{ name: "Amit Jadhav", url: "https://www.OverSight.space/" }],
   creator: "Amit Jadhav",
-  publisher: "BackStory",
+  publisher: "OverSight",
   formatDetection: {
     email: false,
     address: false,
@@ -84,7 +84,7 @@ export const metadata = {
     },
   },
 
-  applicationName: "BackStory",
+  applicationName: "OverSight",
   icons: {
     icon: [
       { url: "/favicon.ico" },
@@ -107,8 +107,8 @@ export const metadata = {
     "color-scheme": "light",
     "apple-mobile-web-app-capable": "yes",
     "apple-mobile-web-app-status-bar-style": "default",
-    "apple-mobile-web-app-title": "BackStory",
-    "application-name": "BackStory",
+    "apple-mobile-web-app-title": "OverSight",
+    "application-name": "OverSight",
     "msapplication-TileColor": "#D4735F",
     "msapplication-config": "/browserconfig.xml",
     "mobile-web-app-capable": "yes",

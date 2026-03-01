@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import SettingsClient from "./SettingsClient";
 
 export const metadata = {
-  title: "Settings - BackStory",
+  title: "Settings - OverSight",
   description: "Manage your account preferences and storytelling settings",
 };
 

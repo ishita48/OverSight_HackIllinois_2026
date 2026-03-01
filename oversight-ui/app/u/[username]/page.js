@@ -19,7 +19,7 @@ export async function generateMetadata({ params }) {
 
     if (users.length === 0) {
       return {
-        title: "Profile Not Found | BackStory",
+        title: "Profile Not Found | OverSight",
         description: "The requested profile could not be found.",
       };
     }
@@ -33,10 +33,10 @@ export async function generateMetadata({ params }) {
     );
 
     const name = users[0].name || username;
-    const title = `${name}'s Founder Journey | BackStory`;
+    const title = `${name}'s Founder Journey | OverSight`;
     const description = profileSnapshot?.profileData?.headlineTruth
-      ? `"${profileSnapshot.profileData.headlineTruth}" - Explore ${name}'s founder journey on BackStory.`
-      : `Explore ${name}'s founder journey and insights on BackStory.`;
+      ? `"${profileSnapshot.profileData.headlineTruth}" - Explore ${name}'s founder journey on OverSight.`
+      : `Explore ${name}'s founder journey and insights on OverSight.`;
 
     return {
       title,
@@ -59,10 +59,10 @@ export async function generateMetadata({ params }) {
                 url: "/api/og-image?name=" + encodeURIComponent(name),
                 width: 1200,
                 height: 630,
-                alt: `${name}'s BackStory profile`,
+                alt: `${name}'s OverSight profile`,
               },
             ],
-        siteName: "BackStory",
+        siteName: "OverSight",
       },
       twitter: {
         card: "summary_large_image",
@@ -85,8 +85,8 @@ export async function generateMetadata({ params }) {
   } catch (error) {
     console.error("Error generating metadata:", error);
     return {
-      title: "BackStory Profile",
-      description: "Explore founder journeys on BackStory.",
+      title: "OverSight Profile",
+      description: "Explore founder journeys on OverSight.",
     };
   }
 }

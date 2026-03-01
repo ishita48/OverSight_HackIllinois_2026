@@ -41,7 +41,7 @@ export default function SignInPage() {
                 <Flame className="w-5 h-5 text-white" />
               </div>
               <span className="text-xl font-bold font-logo text-[#2C2825]">
-                BackStory
+                OverSight
               </span>
             </div>
           </Link>
@@ -166,7 +166,7 @@ export default function SignInPage() {
                 className="text-center mt-6"
               >
                 <p className="text-sm text-[#8B9DC3]">
-                  New to BackStory?{" "}
+                  New to OverSight?{" "}
                   <Link
                     href="/sign-up"
                     className="text-[#D4735F] hover:text-[#B85A47] font-medium transition-colors duration-300"

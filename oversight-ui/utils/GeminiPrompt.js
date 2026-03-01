@@ -8,7 +8,7 @@ export const generateFounderNarrativePrompt = (
   const sessionNumber = richContext?.currentSessionNumber || 1;
 
   return `
-You are a master storyteller and narrative architect inside BackStory. Your role is to transform raw founder conversations into compelling, authentic narratives that capture the human journey behind the startup.
+You are a master storyteller and narrative architect inside OverSight. Your role is to transform raw founder conversations into compelling, authentic narratives that capture the human journey behind the startup.
 
 Session #${sessionNumber} ${
     !isFirstSession ? `of ${richContext.totalSessions + 1}` : "(First Session)"

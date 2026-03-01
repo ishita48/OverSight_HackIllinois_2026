@@ -836,7 +836,7 @@ const SettingsClient = ({ user }) => {
             settings & preferences
           </h1>
           <p className="text-[#6B6560] font-light">
-            customize your BackStory experience to match your storytelling style
+            customize your OverSight experience to match your storytelling style
           </p>
         </motion.div>
 

@@ -1,16 +1,16 @@
-BackStory UI/UX Design Bible - UPDATED
+OverSight UI/UX Design Bible - UPDATED
 The Complete Guide to Crafting a Voice-First Storytelling Experience
 
 Core Design Philosophy
-BackStory is not a SaaS product. It's a digital campfire where founders come to reflect, not pitch. Every pixel should whisper "you're safe here, tell your real story."
-What BackStory IS:
+OverSight is not a SaaS product. It's a digital campfire where founders come to reflect, not pitch. Every pixel should whisper "you're safe here, tell your real story."
+What OverSight IS:
 
 A warm, intimate space for vulnerability
 A friend who listens without judgment
 A mirror that shows your journey beautifully
 Notion's elegance meets Headspace's warmth
 
-What BackStory IS NOT:
+What OverSight IS NOT:
 
 Corporate or sterile
 Data-heavy or dashboard-y
@@ -187,7 +187,7 @@ UI Elements During Recording:
 
 Timer: Minimal, top right, terracotta text
 Pause button: White with dusty blue background
-Current prompt from BackStory: Warm black text
+Current prompt from OverSight: Warm black text
 Encouraging messages in terracotta:
 
 "that's powerful"
@@ -225,7 +225,7 @@ What we discovered about you
 
 Your Truth: That core belief driving everything
 What Drives You: The 2-3 themes that keep appearing
-This is BackStory showing them patterns they didn't see
+This is OverSight showing them patterns they didn't see
 
 3. Moments That Mattered 🔥
 The pivotal points in your journey
@@ -376,7 +376,7 @@ Design:
 
 Name: Large serif, warm black
 Terracotta accent: Subtle flame watermark
-"crafted with backstory": Link in dusty blue
+"crafted with OverSight": Link in dusty blue
 
 
 Component Specifications - UPDATED
@@ -637,7 +637,7 @@ What NOT to Do
 ❌ Disrespecting user emotion
 
 Final Thoughts
-BackStory should feel like:
+OverSight should feel like:
 
 A late-night conversation with your smartest friend
 A leather journal that writes itself

@@ -128,7 +128,7 @@ export default function OnboardingExperience() {
     );
   }
 
-  // Step 1: What BackStory Really Is
+  // Step 1: What OverSight Really Is
   if (currentStep === 1) {
     return (
       <div
@@ -168,7 +168,7 @@ export default function OnboardingExperience() {
 
             <div className="space-y-2">
               <p className="text-sm text-slate-500 max-w-[40ch]">
-                BackStory is not another app.
+                OverSight is not another app.
               </p>
               <p className="text-sm text-slate-500 max-w-[40ch]">
                 It's a ritual.
@@ -289,7 +289,7 @@ export default function OnboardingExperience() {
 
             <div className="space-y-1 z-10 pt-4">
               <p className="text-base text-slate-600 max-w-[38ch]">
-                BackStory isn't here to help you pitch.
+                OverSight isn't here to help you pitch.
               </p>
               <p className="text-base text-[#db5c42] font-semibold max-w-[38ch]">
                 It's here to help you remember why you started.

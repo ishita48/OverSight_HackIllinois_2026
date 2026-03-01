@@ -149,7 +149,7 @@ useEffect(() => {
   const testimonials = [
     {
       quote:
-        "BackStory helped me find the words I'd been searching for. My pitch went from forgettable to unforgettable.",
+        "OverSight helped me find the words I'd been searching for. My pitch went from forgettable to unforgettable.",
       author: "Sarah Chen",
       role: "Founder, HealthTech Startup",
       sessions: 12,
@@ -163,7 +163,7 @@ useEffect(() => {
     },
     {
       quote:
-        "I thought I knew my 'why' until BackStory helped me discover my truth. Game changer.",
+        "I thought I knew my 'why' until OverSight helped me discover my truth. Game changer.",
       author: "Priya Patel",
       role: "Founder, EdTech",
       sessions: 15,
