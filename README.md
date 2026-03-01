@@ -1,226 +1,96 @@
-# 🧠 OverSight --- Clarity Beyond the Bill
+# OverSight — Clarity Beyond the Bill
 
-### HackIllinois 2026 • University of Illinois Urbana-Champaign
+**HackIllinois 2026 · University of Illinois Urbana-Champaign**
 
-> **AI-powered medical bill intelligence that protects patients from
-> hidden healthcare overcharges.**
+> AI-powered medical bill analysis that helps patients find overcharges and fight back.
 
-------------------------------------------------------------------------
+---
 
-## 🚨 The Problem
+## The Problem
 
-Healthcare billing in the United States is **not transparent --- it's
-adversarial**.
+Medical billing in the US is a mess — and not accidentally.
 
-Patients routinely receive bills filled with: - CPT & ICD codes they
-cannot interpret\
-- Inflated or inconsistent regional pricing\
-- Duplicate or misclassified charges\
-- Insurance network errors
+The average patient gets a bill full of CPT codes, line items that don't match what happened, and prices that vary wildly depending on who's asking. Studies suggest **80% of medical bills contain errors**, and over **$210 billion** is lost annually because of it. Most people just pay. Not because they can't afford to fight it, but because they have no idea where to start.
 
-As a result:
+---
 
--   **80%** of medical bills contain errors\
--   **\$210B+** is lost annually to billing mistakes\
--   Nearly **1 in 2 Americans** believe they were incorrectly billed
+## What We Built
 
-Most people overpay **not because care was expensive --- but because
-billing is unreadable.**
+**OverSight** takes a medical bill, tears it apart, and tells you exactly what's wrong with it — in plain English.
 
-------------------------------------------------------------------------
+```
+Upload your bill  →  get a breakdown of every charge
+→  see what's overpriced or miscoded  →  send a dispute letter
+```
 
-## 💡 Our Solution
+The whole thing takes under a minute.
 
-**OverSight** transforms complex medical bills into **clear, actionable
-financial insight** using AI.
+---
 
-Upload a bill → Understand charges → Detect errors → Generate disputes →
-Save money.
+## How It Works
 
-------------------------------------------------------------------------
+| Step | What Happens |
+|------|-------------|
+| **1 · Upload** | We parse your PDF using OCR + AI to extract every charge, CPT code, and line item — even from scanned documents |
+| **2 · Talk to Stella** | Our AI voice assistant walks you through the bill, asks about your visit, and uses your answers to contextualize the analysis |
+| **3 · Analysis** | Your charges are benchmarked against CMS data and regional pricing to flag upcoding, duplicates, out-of-network errors, and above-market rates |
+| **4 · Take Action** | You get a savings estimate, a risk breakdown, and a dispute email ready to send |
 
-## ✨ What OverSight Does
+---
 
-✅ Extracts every charge from uploaded medical bills\
-✅ Benchmarks pricing against national datasets\
-✅ Detects billing anomalies automatically\
-✅ Provides risk scoring & savings estimates\
-✅ Enables real-time AI voice advocacy\
-✅ Generates dispute-ready insurance emails
-
-All in **under 60 seconds**.
-
-------------------------------------------------------------------------
-
-## 🧭 How It Works
-
-### 1️⃣ PDF DeepDive
-
-Users upload a medical bill. AI parses structured and unstructured
-healthcare data instantly.
-
-### 2️⃣ Advocate Session
-
-Users speak with **Stella**, our AI voice assistant, to contextualize
-the visit.
-
-### 3️⃣ Intelligent Analysis
-
-OverSight detects: - Upcoding - Duplicate billing - Out-of-network
-misclassification - Above-benchmark pricing
-
-### 4️⃣ Actionable Output
-
-Users receive: - Savings estimate - Risk analysis - Itemized
-explanations - One-click dispute email
-
-------------------------------------------------------------------------
-
-## 🏗 System Architecture
-
-    Browser / Next.js Frontend
-            ↓
-    API Routes (TypeScript)
-            ↓
-    Modal Serverless Compute
-            ↓
-    Python AI Analysis Engine
-            ↓
-    Healthcare Benchmark Models
-            ↓
-    Structured JSON Insight
-            ↓
-    React State + Voice Assistant
-
-------------------------------------------------------------------------
-
-## 🧠 AI Pipeline
-
-### Document Intelligence
-
--   OCR + semantic parsing
--   CPT / HCPCS extraction
--   Charge normalization
-
-### Medical Reasoning Layer
-
--   Visit complexity inference
--   Procedure validation
--   Coding mismatch detection
-
-### Benchmark Engine
-
--   CMS.gov datasets
--   Regional pricing comparisons
--   Historical billing distributions
-
-### Advocacy Generation
-
--   Natural-language dispute synthesis
--   Insurance-ready formatting
--   Patient-safe explanations
-
-------------------------------------------------------------------------
-
-## 🎙 Voice AI --- Stella
-
--   Guides users through bills
--   Collects visit context
--   Explains detected risks
--   Acts as a virtual billing advocate
-
-No recordings stored. End-to-end encrypted sessions.
-
-------------------------------------------------------------------------
-
-## 🔐 Privacy & Security
-
--   End-to-end encryption
--   Stateless compute execution
--   Secure authentication via Clerk
--   Isolated serverless analysis
--   No persistent voice recordings
-
-Sensitive data never trains models.
-
-------------------------------------------------------------------------
-
-## ⚙️ Tech Stack
+## Tech Stack
 
 ### Frontend
-
--   Next.js 15
--   React
--   TailwindCSS
--   Framer Motion
--   Radix UI
+`Next.js 15` `React` `TailwindCSS` `Framer Motion` `Radix UI`
 
 ### Backend
-
--   FastAPI (AI services)
--   Modal Serverless Compute
--   Neon Postgres
--   Drizzle ORM
+`FastAPI` `Modal Serverless` `Neon Postgres` `Drizzle ORM`
 
 ### AI & Infrastructure
+`OpenAI` `Anthropic` `Google Gemini` `Vapi` `SuperMemory` `Cloudflare` `Clerk`
 
--   OpenAI
--   Anthropic
--   Google Gemini
--   Vapi (Voice AI)
--   SuperMemory
--   Cloudflare Edge
--   Clerk Authentication
+---
 
-------------------------------------------------------------------------
+## Architecture
 
-## 🧩 Key Innovation
+```
+Browser / Next.js Frontend
+         ↓
+  API Routes (TypeScript)
+         ↓
+  Modal Serverless Compute
+         ↓
+  Python AI Analysis Engine
+         ↓
+  Healthcare Benchmark Models   ←   CMS.gov Datasets
+         ↓
+  Structured JSON Insight
+         ↓
+  React State + Vapi Voice Layer
+```
 
-OverSight creates an **AI medical billing advocate**, combining: -
-Document AI\
-- Voice reasoning\
-- Benchmark intelligence\
-- Action generation
+---
 
-into a single patient-first system.
+## What Was Hard
 
-------------------------------------------------------------------------
+**Parsing medical PDFs** is genuinely painful. There's no standard format — some are digital, some are scanned, some are structured tables, some are just walls of text. Getting reliable CPT code extraction across all of them took a lot of iteration.
 
-## 🧗 Challenges We Solved
+**Syncing voice with analysis** was also tricky. Stella collects context in real time, but the analysis pipeline needs that context before it can run. We built a state handoff layer between Vapi and Modal to make this work cleanly.
 
--   Parsing inconsistent medical PDFs
--   Mapping CPT codes reliably
--   Real-time serverless AI execution
--   Voice + structured analysis synchronization
--   Maintaining privacy while enabling persistence
+---
 
-------------------------------------------------------------------------
+## Privacy
 
-## 🏆 Accomplishments
+- No voice recordings stored
+- Bill data processed statelessly in isolated serverless containers
+- Auth handled entirely by Clerk
+- Nothing sensitive touches a model's training pipeline
 
-✅ Built full distributed AI architecture\
-✅ Real-time bill analysis pipeline\
-✅ Voice healthcare advocate\
-✅ Serverless scalable compute\
-✅ Production-ready UX
+---
 
-------------------------------------------------------------------------
+## Running It Locally
 
-## 🚀 What's Next
-
--   Insurance API integrations\
--   Automated dispute submission\
--   Longitudinal medical cost tracking\
--   Provider transparency scoring\
--   Employer & hospital partnerships
-
-> **Healthcare pricing should be understandable by default.**
-
-------------------------------------------------------------------------
-
-## ▶️ Running OverSight Locally
-
-``` bash
+```bash
 git clone <repo-url>
 cd oversight-ui
 npm install
@@ -229,39 +99,24 @@ npm run dev
 
 Create `.env.local`:
 
-    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=YOUR_KEY
-    DATABASE_URL=YOUR_DATABASE
-    NEXT_PUBLIC_VAPI_PUBLIC_KEY=YOUR_KEY
-    NEXT_PUBLIC_MODAL_ANALYZE_PDF_URL=YOUR_MODAL_ENDPOINT
-    SUPERMEMORY_KEY=YOUR_KEY
+```env
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_key
+DATABASE_URL=your_database_url
+NEXT_PUBLIC_VAPI_PUBLIC_KEY=your_key
+NEXT_PUBLIC_MODAL_ANALYZE_PDF_URL=your_modal_endpoint
+SUPERMEMORY_KEY=your_key
+```
 
-Open:
+Open `http://localhost:3000`
 
-    http://localhost:3000
+---
 
-------------------------------------------------------------------------
+## The Bigger Picture
 
-## 🌎 Impact
+Medical billing is confusing by design. Hospitals and insurers have entire departments dedicated to maximizing what they collect. Patients have nothing.
 
-Correcting even a fraction of billing errors could return **billions of
-dollars back to patients annually**.
+OverSight is our attempt to change that ratio — even a little.
 
-OverSight empowers individuals against one of the most opaque systems in
-modern society.
+---
 
-------------------------------------------------------------------------
-
-## 👥 Team OverSight
-
-Built at **HackIllinois 2026**\
-University of Illinois Urbana-Champaign
-
-Designing AI systems that protect people --- not confuse them.
-
-------------------------------------------------------------------------
-
-## ❤️ Final Thought
-
-Medical billing is confusing **by design**.
-
-**OverSight makes it transparent in seconds.**
+*Built at HackIllinois 2026 · University of Illinois Urbana-Champaign*
