@@ -771,6 +771,29 @@ const caseStudies = [
             ))}
           </div>
           
+          <motion.div
+            className="max-w-2xl mx-auto mb-14"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
+            <a
+              href="https://data.cms.gov/provider-data/search?theme=Physician%20office%20visit%20costs"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center space-x-3 px-5 py-3 rounded-full bg-[#2C2825] hover:bg-[#3D3833] transition-colors group"
+            >
+              <FileText className="w-3.5 h-3.5 text-[#E4B08F]" />
+
+              <span className="text-white/70 text-xs">
+                Benchmarked against 4,200,000+ records from CMS.gov
+              </span>
+
+              <ExternalLink className="w-3 h-3 text-white/30 group-hover:text-[#E4B08F] transition-colors" />
+            </a>
+          </motion.div>
+
           {/* Interactive PDF Upload Demo */}
           <motion.div
             className="max-w-4xl mx-auto mb-16"
