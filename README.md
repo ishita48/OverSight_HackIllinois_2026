@@ -131,7 +131,7 @@ SuperMemory Store   OpenAI Dispute Generator
 ## Running It Locally
 
 ```bash
-git clone <repo-url>
+git clone <https://github.com/ishita48/OverSight_HackIllinois_2026.git>
 cd oversight-ui
 npm install
 npm run dev
@@ -161,4 +161,4 @@ OverSight is our attempt to change that ratio — even a little.
 ---
 
 *Built at HackIllinois 2026 · University of Illinois Urbana-Champaign*  
-*Sudarshan Krishna & Isheta Gupta*
+*Sudarshan Krishnan & Ishita Gupta*
