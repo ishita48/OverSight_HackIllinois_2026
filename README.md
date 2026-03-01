@@ -18,7 +18,7 @@ Built in 36 hours at HackIllinois 2026.
 |------|-------|
 | General Admission | Best UI/UX Design |
 | General Admission | Best Social Impact |
-| Sponsor | Modal — AI Inspection Track |
+| Sponsor | Modal — AI Inference Track |
 
 ---
 
@@ -56,7 +56,7 @@ The whole thing takes under a minute.
 
 ## Sponsor Integrations
 
-### Modal — AI Inspection Track
+### Modal — AI Inference Track
 Modal is the computational backbone of OverSight. We use it as our root agent AI, handling PDF parsing, OCR, and all heavy compute tasks. When a bill is uploaded, Modal spins up a serverless container, reads the medical document, identifies every charge, and flags areas where the patient is likely being overcharged. Nearly all of our AI analysis pipeline runs through Modal.
 
 ### ElevenLabs — Voice Advocate
