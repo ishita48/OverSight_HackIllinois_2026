@@ -40,7 +40,7 @@ const ibmPlexMono = IBM_Plex_Mono({
 export const metadata = {
   metadataBase: new URL("https://www.OverSight.space/"), // Update with your actual domain
   title: {
-    default: "OverSight - Your Founder Story Platform",
+    default: "OverSight",
     template: "%s | OverSight",
   },
   description:
