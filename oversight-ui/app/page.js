@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Mic,
+  Mail,
   Play,
   Pause,
   ArrowRight,
@@ -510,6 +511,174 @@ const caseStudies = [
         </div>
       </section>
 
+      {/* Why You Need This Section */}
+      <motion.section
+        className="py-24 px-6 relative z-10 bg-[#FDFCFB]"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1 }}
+      >
+        <div className="max-w-6xl mx-auto">
+          {/* Section Header */}
+          <motion.div
+            className="text-center mb-8"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <p className="text-sm uppercase tracking-[3px] text-[#8B9DC3] mb-4 font-medium">
+              The Problem
+            </p>
+            <h2 className="text-4xl lg:text-5xl font-serif font-light text-[#2C2825] mb-6 leading-tight">
+              Medical bills are confusing<br />
+              <span className="text-[#D4735F]">by design</span>
+            </h2>
+            <p className="text-xl text-[#6B6560] max-w-2xl mx-auto leading-relaxed">
+              Most patients overpay because they don't know what to look for.
+              Here's what the billing system doesn't want you to see.
+            </p>
+          </motion.div>
+
+          {/* Stats Row */}
+          <motion.div
+            className="grid md:grid-cols-3 gap-8 mb-20"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            {[
+              {
+                stat: "80%",
+                label: "of medical bills contain errors",
+                source: "— Medical Billing Advocates of America",
+                color: "#D4735F",
+              },
+              {
+                stat: "$210B+",
+                label: "wasted annually on billing errors in the U.S.",
+                source: "— Journal of the American Medical Association",
+                color: "#8B9DC3",
+              },
+              {
+                stat: "49%",
+                label: "of Americans have received a bill they believe is wrong",
+                source: "— Kaiser Family Foundation",
+                color: "#E4B08F",
+              },
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.15 + 0.3 }}
+              >
+                <Card className="bg-white/70 backdrop-blur-sm border border-[#F7F5F2] rounded-2xl p-8 text-center h-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                  <CardContent className="p-0 space-y-3">
+                    <p
+                      className="text-5xl lg:text-6xl font-serif font-light"
+                      style={{ color: item.color }}
+                    >
+                      {item.stat}
+                    </p>
+                    <p className="text-lg font-medium text-[#2C2825]">
+                      {item.label}
+                    </p>
+                    <p className="text-xs text-[#8B9DC3] italic">
+                      {item.source}
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Pain Points */}
+          <motion.div
+            className="max-w-4xl mx-auto"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            <Card className="bg-white/90 backdrop-blur-sm border border-[#E4B08F]/20 rounded-3xl p-10 shadow-xl">
+              <CardContent className="p-0">
+                <div className="grid md:grid-cols-2 gap-x-12 gap-y-8">
+                  <div className="text-center md:text-left space-y-3 md:col-span-2 mb-4">
+                    <h3 className="text-2xl font-serif font-medium text-[#2C2825]">
+                      Sound familiar?
+                    </h3>
+                    <p className="text-[#6B6560]">
+                      These are real frustrations from real patients — and exactly why we built OverSight.
+                    </p>
+                  </div>
+
+                  {[
+                    {
+                      icon: <AlertTriangle className="w-5 h-5" />,
+                      title: "Unreadable bills",
+                      text: "Pages of CPT codes and jargon that make it impossible to know what you're actually paying for.",
+                      color: "#D4735F",
+                    },
+                    {
+                      icon: <TrendingUp className="w-5 h-5" />,
+                      title: "Inflated pricing",
+                      text: "No way to know if your $800 chest X-ray should have actually cost $350.",
+                      color: "#8B9DC3",
+                    },
+                    {
+                      icon: <XCircle className="w-5 h-5" />,
+                      title: "No one to advocate for you",
+                      text: "Calling insurance takes hours. Disputing a charge feels like fighting a system built to exhaust you.",
+                      color: "#E4B08F",
+                    },
+                    {
+                      icon: <Search className="w-5 h-5" />,
+                      title: "Hidden errors go unnoticed",
+                      text: "Duplicate charges, upcoding, and network misclassifications slip through because no one checks.",
+                      color: "#D4735F",
+                    },
+                  ].map((item, index) => (
+                    <motion.div
+                      key={index}
+                      className="flex items-start space-x-4"
+                      initial={{ opacity: 0, x: -15 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.1 + 0.4 }}
+                    >
+                      <div
+                        className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5"
+                        style={{ backgroundColor: `${item.color}15`, color: item.color }}
+                      >
+                        {item.icon}
+                      </div>
+                      <div>
+                        <p className="font-medium text-[#2C2825] mb-1">{item.title}</p>
+                        <p className="text-sm text-[#6B6560] leading-relaxed">{item.text}</p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* Transition line */}
+                <div className="mt-10 pt-8 border-t border-[#F7F5F2] text-center">
+                  <p className="text-lg text-[#2C2825] font-serif font-medium">
+                    That's why we built OverSight —{" "}
+                    <span className="text-[#D4735F]">
+                      an AI that reads your bill so you don't have to.
+                    </span>
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </div>
+      </motion.section>
+
       {/* How It Works Section */}
       <motion.section
         id="how-it-works"
@@ -536,6 +705,71 @@ const caseStudies = [
               clear, actionable insights
             </p>
           </motion.div>
+
+          
+          <div className="grid md:grid-cols-4 gap-6 mb-20">
+            {[
+              {
+                step: "01",
+                title: "PDF DeepDive",
+                description: "Upload your bill and AI extracts every charge instantly.",
+                icon: <FileText className="w-8 h-8" />,
+                color: "from-[#D4735F] to-[#B85A47]",
+              },
+              {
+                step: "02",
+                title: "Advocate Session",
+                description: "Talk with Riley, your AI voice advocate, about your visit.",
+                icon: <Mic className="w-8 h-8" />,
+                color: "from-[#E4B08F] to-[#D49C6B]",
+              },
+              {
+                step: "03",
+                title: "Get Report",
+                description: "See flagged overcharges, risk scores, and estimated savings.",
+                icon: <Brain className="w-8 h-8" />,
+                color: "from-[#8B9DC3] to-[#6B7FA0]",
+              },
+              {
+                step: "04",
+                title: "Email Template",
+                description: "Get a ready-to-send dispute letter in one click.",
+                icon: <CheckCircle className="w-8 h-8" />,
+                color: "from-[#D4735F] to-[#B85A47]",
+              },
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: index * 0.15 + 0.4 }}
+              >
+                <Card className="bg-white/60 backdrop-blur-sm border border-[#F7F5F2] hover:border-[#E4B08F]/30 rounded-2xl p-6 h-full transition-all duration-300 hover:shadow-xl group">
+                  <CardContent className="p-0 space-y-4">
+                    <div className="flex items-center space-x-3">
+                      <span className="text-2xl font-serif font-light text-[#8B9DC3]">
+                        {item.step}
+                      </span>
+                      <div
+                        className={`p-2.5 rounded-xl bg-gradient-to-r ${item.color} text-white group-hover:scale-110 transition-transform duration-300`}
+                      >
+                        {item.icon}
+                      </div>
+                    </div>
+
+                    <h3 className="text-xl font-serif font-medium text-[#2C2825]">
+                      {item.title}
+                    </h3>
+
+                    <p className="text-[#6B6560] leading-relaxed text-sm">
+                      {item.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
           
           {/* Interactive PDF Upload Demo */}
           <motion.div
@@ -885,76 +1119,6 @@ const caseStudies = [
               </CardContent>
             </Card>
           </motion.div>
-
-
-          <div className="grid md:grid-cols-4 gap-6">
-            {[
-              {
-                step: "01",
-                title: "Upload Your Bill",
-                description:
-                  "Simply upload your medical bill PDF. No account needed. Our AI instantly begins extracting CPT codes, line items, and pricing data.",
-                icon: <FileText className="w-8 h-8" />,
-                color: "from-[#D4735F] to-[#B85A47]",
-              },
-              {
-                step: "02",
-                title: "Talk Through It",
-                description:
-                  "Our custom AI bot asks targeted questions about your healthcare visit, procedures, and concerns. Your answers help us build the most accurate and personalized report.",
-                icon: <Mic className="w-8 h-8" />,
-                color: "from-[#E4B08F] to-[#D49C6B]",
-              },
-              {
-                step: "03",
-                title: "AI Analyzes Everything",
-                description:
-                  "Our multi-stage inference pipeline benchmarks each charge against national pricing data, detects anomalies, and calculates your risk index.",
-                icon: <Brain className="w-8 h-8" />,
-                color: "from-[#8B9DC3] to-[#6B7FA0]",
-              },
-              {
-                step: "04",
-                title: "Get Your Report",
-                description:
-                  "Receive a clear breakdown of potential overcharges, estimated savings, and a dispute-ready letter you can send immediately.",
-                icon: <CheckCircle className="w-8 h-8" />,
-                color: "from-[#D4735F] to-[#B85A47]",
-              },
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: index * 0.15 + 0.4 }}
-              >
-                <Card className="bg-white/60 backdrop-blur-sm border border-[#F7F5F2] hover:border-[#E4B08F]/30 rounded-2xl p-6 h-full transition-all duration-300 hover:shadow-xl group">
-                  <CardContent className="p-0 space-y-4">
-                    <div className="flex items-center space-x-3">
-                      <span className="text-2xl font-serif font-light text-[#8B9DC3]">
-                        {item.step}
-                      </span>
-                      <div
-                        className={`p-2.5 rounded-xl bg-gradient-to-r ${item.color} text-white group-hover:scale-110 transition-transform duration-300`}
-                      >
-                        {item.icon}
-                      </div>
-                    </div>
-
-                    <h3 className="text-xl font-serif font-medium text-[#2C2825]">
-                      {item.title}
-                    </h3>
-
-                    <p className="text-[#6B6560] leading-relaxed text-sm">
-                      {item.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-
 
         </div>
       </motion.section>
