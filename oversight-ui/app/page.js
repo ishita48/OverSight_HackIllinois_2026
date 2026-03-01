@@ -974,7 +974,7 @@ const caseStudies = [
                             {uploadState.flags?.map((flag, i) => (
                               <div key={i} className="flex items-center justify-center space-x-2 text-sm">
                                 <div className="px-4 py-2 rounded-lg bg-[#D4735F]/10 text-[#D4735F] font-medium">
-                                  ⚠ {flag}
+                                  ⚠ {typeof flag === "string" ? flag : flag.description}
                                 </div>
                               </div>
                             ))}
