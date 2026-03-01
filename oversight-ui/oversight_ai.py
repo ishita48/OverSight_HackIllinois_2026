@@ -1,7 +1,10 @@
 import modal
-from fastapi import UploadFile, File
-from pypdf import PdfReader
 import io
+import json
+
+from fastapi import FastAPI, UploadFile, File
+from fastapi.middleware.cors import CORSMiddleware
+from pypdf import PdfReader
 
 # =====================================================
 # Modal App
@@ -11,58 +14,69 @@ app = modal.App("oversight-ai")
 # =====================================================
 # Container Image
 # =====================================================
-image = modal.Image.debian_slim().pip_install(
-    "fastapi[standard]",
-    "openai",
-    "pypdf"
+image = (
+    modal.Image.debian_slim()
+    .pip_install(
+        "fastapi[standard]",
+        "openai",
+        "pypdf",
+        "python-multipart",
+    )
 )
 
 # =====================================================
-# OpenAI Secret (created in Modal dashboard)
+# Secrets
 # =====================================================
 openai_secret = modal.Secret.from_name("openai-secret")
 
+# =====================================================
+# FastAPI App
+# =====================================================
+web_app = FastAPI()
+
+web_app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # =====================================================
-# Health Check
-# =====================================================
-@app.function(image=image)
-@modal.fastapi_endpoint(method="GET")
-def health():
-    return {"status": "Oversight AI running ✅"}
-
-
-# =====================================================
-# GPT Medical Bill Analyzer
+# GPT BILL ANALYZER (⭐ ENHANCED)
 # =====================================================
 @app.function(
     image=image,
     secrets=[openai_secret],
+    min_containers=1,
 )
 def analyze_bill_text(text: str):
 
     from openai import OpenAI
-    import json
 
-    # ✅ API key automatically injected from Modal Secret
     client = OpenAI()
 
     prompt = f"""
-You are an expert US medical billing auditor.
+You are a professional US medical billing auditor.
 
-Analyze this medical bill and detect:
-
-- overpriced procedures
-- duplicate charges
-- suspicious facility fees
-- upcoding
-- billing anomalies
+Identify suspicious or incorrect charges.
 
 Return STRICT JSON ONLY:
 
 {{
-  "flags": ["issue1", "issue2"],
-  "summary": "short explanation"
+  "issues":[
+    {{
+      "type":"upcoding | duplicate | inflated_cost | unnecessary",
+      "item":"name of billed item",
+      "cpt_code":"if available",
+      "amount":0,
+      "fair_price":0,
+      "overcharge":0,
+      "explanation":"why this is suspicious",
+      "severity":"low | medium | high"
+    }}
+  ],
+  "summary":"overall audit summary"
 }}
 
 Medical Bill:
@@ -72,73 +86,81 @@ Medical Bill:
     response = client.chat.completions.create(
         model="gpt-4o-mini",
         temperature=0.2,
-        messages=[
-            {"role": "user", "content": prompt}
-        ],
+        messages=[{"role": "user", "content": prompt}],
     )
 
-    content = response.choices[0].message.content
+    content = response.choices[0].message.content.strip()
+
+    # ✅ Remove markdown wrapping
+    if content.startswith("```"):
+        content = content.replace("```json", "")
+        content = content.replace("```", "").strip()
 
     try:
         return json.loads(content)
+
     except Exception:
         return {
-            "flags": ["AI parsing issue"],
-            "summary": content[:300],
+            "issues": [],
+            "summary": content[:400],
         }
 
 
 # =====================================================
-# JSON Text Endpoint (optional)
+# HEALTH CHECK
 # =====================================================
-@app.function(
-    image=image,
-    secrets=[openai_secret],
-)
-@modal.fastapi_endpoint(method="POST")
-def analyze_bill(data: dict):
+@web_app.get("/")
+async def health():
+    return {"status": "Oversight AI running ✅"}
+
+
+# =====================================================
+# TEXT ANALYSIS
+# =====================================================
+@web_app.post("/analyze_bill")
+async def analyze_bill(data: dict):
 
     bill_text = data.get("bill_text", "")
-
     result = analyze_bill_text.remote(bill_text)
 
     return result
 
 
 # =====================================================
-# PDF Upload + AI Analysis Endpoint
+# PDF UPLOAD + INLINE DATA
 # =====================================================
-@app.function(
-    image=image,
-    secrets=[openai_secret],
-)
-@modal.fastapi_endpoint(method="POST")
+@web_app.post("/analyze_pdf")
 async def analyze_pdf(file: UploadFile = File(...)):
 
-    # -------------------------
-    # Read uploaded PDF
-    # -------------------------
     contents = await file.read()
-
     pdf = PdfReader(io.BytesIO(contents))
 
     extracted_text = ""
-
     for page in pdf.pages:
         extracted_text += page.extract_text() or ""
 
     if not extracted_text.strip():
         return {
-            "flags": ["No readable text found"],
-            "summary": "PDF may be scanned or image-based."
+            "issues": [],
+            "summary": "PDF may be scanned or image-based.",
         }
 
-    # -------------------------
-    # Send to GPT Analysis
-    # -------------------------
     result = analyze_bill_text.remote(extracted_text)
 
     return {
-        "extracted_preview": extracted_text[:500],
-        **result
+        "extracted_text": extracted_text,   # ⭐ enables highlighting
+        **result,
     }
+
+
+# =====================================================
+# MODAL ENTRYPOINT
+# =====================================================
+@app.function(
+    image=image,
+    secrets=[openai_secret],
+    min_containers=1,
+)
+@modal.asgi_app()
+def fastapi_app():
+    return web_app

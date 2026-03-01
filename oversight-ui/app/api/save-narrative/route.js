@@ -1,4 +1,3 @@
-// app/api/save-narrative/route.js
 import { NextResponse } from "next/server";
 import { db } from "@/utils/db";
 import {
@@ -8,12 +7,22 @@ import {
   narrativeThemes,
 } from "@/utils/schema";
 import { eq, and, sql } from "drizzle-orm";
-import { createProject, updateProject } from "@/utils/db-helpers";
+import { createProject } from "@/utils/db-helpers";
 
 export async function POST(req) {
   try {
     const body = await req.json();
-    const { userId, sessionId, transcript, feedbackJson, projectId } = body;
+
+    // ✅ NEW FIELDS ADDED HERE
+    const {
+      userId,
+      sessionId,
+      transcript,
+      feedbackJson,
+      projectId,
+      billAnalysis,
+      negotiationEmail,
+    } = body;
 
     if (!userId || !sessionId || !transcript || !feedbackJson) {
       return NextResponse.json(
@@ -29,8 +38,10 @@ export async function POST(req) {
 
     let finalProjectId = projectId;
 
+    // =============================
+    // Project Creation / Update
+    // =============================
     if (!projectId) {
-      // New project flow
       const project = await createProject({
         userId,
         name: feedback.projectName || "Untitled Project",
@@ -42,24 +53,31 @@ export async function POST(req) {
         storyDepth: feedback.narrativeDepth || 1,
         lastMood: feedback.mood || "reflective",
       });
+
       finalProjectId = project.id;
     } else {
-      // Update existing project
       await db
         .update(founderProjects)
         .set({
           lastSessionSummary: feedback.sessionReflection || "",
           currentStage:
-            feedback.projectStage || sql`${founderProjects.currentStage}`,
+            feedback.projectStage ||
+            sql`${founderProjects.currentStage}`,
           sessionCount: sql`${founderProjects.sessionCount} + 1`,
-          storyDepth: Math.max(parseInt(feedback.narrativeDepth) || 1, 1),
-          lastMood: feedback.mood || sql`${founderProjects.lastMood}`,
+          storyDepth: Math.max(
+            parseInt(feedback.narrativeDepth) || 1,
+            1
+          ),
+          lastMood:
+            feedback.mood || sql`${founderProjects.lastMood}`,
           updatedAt: new Date(),
         })
         .where(eq(founderProjects.id, projectId));
     }
 
-    // Get session number
+    // =============================
+    // Session Number
+    // =============================
     const existingSessions = await db
       .select()
       .from(founderNarratives)
@@ -67,44 +85,44 @@ export async function POST(req) {
 
     const sessionNumber = existingSessions.length + 1;
 
-    // Save the main narrative with all new fields
+    // =============================
+    // MAIN SAVE ✅
+    // =============================
     await db.insert(founderNarratives).values({
       userId,
       sessionId,
       projectId: finalProjectId,
       sessionNumber,
+
       sessionType: feedback.sessionType || "general",
       transcript,
+
       feedbackJson:
         typeof feedbackJson === "string"
           ? feedbackJson
           : JSON.stringify(feedbackJson),
 
-      // Basic info
-      sessionTitle: feedback.sessionTitle || `Session ${sessionNumber}`,
-      projectName: feedback.projectName || "Untitled Project",
+      sessionTitle:
+        feedback.sessionTitle || `Session ${sessionNumber}`,
+      projectName:
+        feedback.projectName || "Untitled Project",
       mood: feedback.mood || "reflective",
       tags: feedback.tags || [],
 
-      // Your Story
       yourStory: feedback.yourStory || "",
       storyVersion: feedback.storyVersion || 1,
 
-      // The Essence
       yourTruth: feedback.yourTruth || "",
       whatDrivesYou: feedback.whatDrivesYou || [],
 
-      // Moments That Mattered
       turningPoint: feedback.turningPoint || null,
       theDoubt: feedback.theDoubt || null,
       theBreakthrough: feedback.theBreakthrough || null,
       keyQuotes: feedback.keyQuotes || [],
 
-      // Founder DNA
       founderDNA: feedback.founderDNA || "",
       personalityTraits: feedback.personalityTraits || [],
 
-      // Tell It Your Way
       tellItYourWay: feedback.tellItYourWay || {
         lightning: "",
         dinnerParty: "",
@@ -112,20 +130,30 @@ export async function POST(req) {
         investorPitch: "",
       },
 
-      // Evolution tracking
       narrativeDepth: feedback.narrativeDepth || 1,
       emotionalOpenness: feedback.emotionalOpenness || 1,
       clarityScore: feedback.clarityScore || 1,
 
-      // Legacy fields for backward compatibility
-      oneLiner: feedback.yourTruth || feedback.oneLiner || "",
-      quote: feedback.keyQuotes?.[0]?.quote || feedback.quote || "",
+      oneLiner:
+        feedback.yourTruth || feedback.oneLiner || "",
+      quote:
+        feedback.keyQuotes?.[0]?.quote ||
+        feedback.quote ||
+        "",
 
       createdAt: new Date(),
+
+      // ✅ =========================
+      // ✅ MEDICAL ADVOCACY SAVE
+      // ✅ =========================
+      billAnalysis: billAnalysis ?? null,
+      negotiationEmail: negotiationEmail ?? null,
     });
 
-    // Track story evolution if there are changes
-    if (feedback.storyEvolutions && Array.isArray(feedback.storyEvolutions)) {
+    // =============================
+    // Story Evolution
+    // =============================
+    if (feedback.storyEvolutions?.length) {
       for (const evolution of feedback.storyEvolutions) {
         await db.insert(storyEvolution).values({
           projectId: finalProjectId,
@@ -140,10 +168,11 @@ export async function POST(req) {
       }
     }
 
-    // Update or create narrative themes
-    if (feedback.whatDrivesYou && Array.isArray(feedback.whatDrivesYou)) {
+    // =============================
+    // Narrative Themes
+    // =============================
+    if (feedback.whatDrivesYou?.length) {
       for (const driver of feedback.whatDrivesYou) {
-        // Check if theme exists
         const existingTheme = await db
           .select()
           .from(narrativeThemes)
@@ -156,24 +185,18 @@ export async function POST(req) {
           .limit(1);
 
         if (existingTheme.length > 0) {
-          // Update existing theme
           await db
             .update(narrativeThemes)
             .set({
               description: driver.description,
               lastReinforced: sessionNumber,
-              strength: sql`LEAST(${narrativeThemes.strength} + 1, 10)`,
-              examples: sql`${narrativeThemes.examples} || ${JSON.stringify([
-                {
-                  session: sessionNumber,
-                  description: driver.description,
-                },
-              ])}::jsonb`,
+              strength: sql`LEAST(${narrativeThemes.strength}+1,10)`,
               updatedAt: new Date(),
             })
-            .where(eq(narrativeThemes.id, existingTheme[0].id));
+            .where(
+              eq(narrativeThemes.id, existingTheme[0].id)
+            );
         } else {
-          // Create new theme
           await db.insert(narrativeThemes).values({
             projectId: finalProjectId,
             theme: driver.theme,
@@ -181,12 +204,6 @@ export async function POST(req) {
             firstAppeared: sessionNumber,
             lastReinforced: sessionNumber,
             strength: 1,
-            examples: [
-              {
-                session: sessionNumber,
-                description: driver.description,
-              },
-            ],
             createdAt: new Date(),
             updatedAt: new Date(),
           });
@@ -204,8 +221,12 @@ export async function POST(req) {
     );
   } catch (err) {
     console.error("Error saving narrative:", err);
+
     return NextResponse.json(
-      { error: "Internal Server Error", details: err.message },
+      {
+        error: "Internal Server Error",
+        details: err.message,
+      },
       { status: 500 }
     );
   }
